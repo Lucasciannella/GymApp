@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  db:
+    image: mysql
+    container_name: controlapp
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3300:3300"
+    volumes:
+      - gymcontrol_data:/var/lib/mysql
+
+volumes:
+  gymcontrol_data:
