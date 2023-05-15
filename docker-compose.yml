@@ -2,13 +2,12 @@ version: '3.1'
 services:
   db:
     image: mysql
-    container_name: controlapp
+    container_name: encurtathor
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - "3300:3300"
+      - "3306:3306"
     volumes:
-      - gymcontrol_data:/var/lib/mysql
-
+      - gymcontroll_data:/var/lib/mysql
 volumes:
-  gymcontrol_data:
+  gymcontroll_data:
