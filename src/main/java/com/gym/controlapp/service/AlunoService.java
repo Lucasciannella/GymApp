@@ -22,13 +22,7 @@ public class AlunoService {
         this.alunoDtoMapper = alunoDtoMapper;
     }
 
-
-    public Aluno salvar(AlunoDto alunoDto){
-        return null;
-    }
-
-
-    public List<AlunoDto> ListarTudo(){
+    public List<AlunoDto> ListarTudo() {
         return alunoRepository.findAll()
                 .stream()
                 .map(alunoDtoMapper).collect(Collectors.toList());

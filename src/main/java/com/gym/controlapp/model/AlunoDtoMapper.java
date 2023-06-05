@@ -27,5 +27,4 @@ public class AlunoDtoMapper implements Function<Aluno, AlunoDto> {
                         )).collect(Collectors.toList())
         );
     }
-
 }
