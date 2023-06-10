@@ -3,7 +3,7 @@ package com.gym.controlapp.model;
 import jakarta.persistence.*;
 
 @Entity
-public class Endereco {
+public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -15,8 +15,8 @@ public class Endereco {
     private String uf;
 
     @ManyToOne
-    @JoinColumn(name = "aluno_id")
-    private Aluno aluno;
+    @JoinColumn(name = "student_id")
+    private Student student;
 
     public Long getId() {
         return id;
@@ -46,7 +46,7 @@ public class Endereco {
         return uf;
     }
 
-    public Aluno getAluno() {
-        return aluno;
+    public Student getAluno() {
+        return student;
     }
 }

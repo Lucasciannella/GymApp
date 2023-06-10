@@ -2,7 +2,7 @@ version: '3.1'
 services:
   db:
     image: mysql
-    container_name: encurtathor
+    container_name: gympp
     environment:
       MYSQL_ROOT_PASSWORD: root
     ports:
