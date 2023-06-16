@@ -2,10 +2,19 @@ package com.gym.controlapp.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
+@Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Student {
 
     @Id
@@ -18,40 +27,4 @@ public class Student {
     private String cpf;
     @OneToMany(mappedBy = "student")
     private List<Address> address;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public LocalDate getNascimento() {
-        return nascimento;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public List<Address> getAddress() {
-        return address;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public void setNascimento(LocalDate nascimento) {
-        this.nascimento = nascimento;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
 }

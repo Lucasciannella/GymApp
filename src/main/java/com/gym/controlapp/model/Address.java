@@ -1,8 +1,18 @@
 package com.gym.controlapp.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
+@Builder
+@Getter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Address {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -14,39 +24,8 @@ public class Address {
     private String localidade;
     private String uf;
 
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
-
-    public Long getId() {
-        return id;
-    }
-
-    public String getCep() {
-        return cep;
-    }
-
-    public String getLogradouro() {
-        return logradouro;
-    }
-
-    public String getComplemento() {
-        return complemento;
-    }
-
-    public String getBairro() {
-        return bairro;
-    }
-
-    public String getLocalidade() {
-        return localidade;
-    }
-
-    public String getUf() {
-        return uf;
-    }
-
-    public Student getAluno() {
-        return student;
-    }
 }

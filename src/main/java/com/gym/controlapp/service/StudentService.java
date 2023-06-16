@@ -1,27 +1,20 @@
 package com.gym.controlapp.service;
 
-import com.gym.controlapp.dto.StudentPostDto;
-import com.gym.controlapp.dto.StudentPutDto;
+import com.gym.controlapp.dto.student.StudentPostDto;
+import com.gym.controlapp.dto.student.StudentPutDto;
 import com.gym.controlapp.exception.NotFoundException;
-import com.gym.controlapp.mapper.StudentMapper;
 import com.gym.controlapp.model.Student;
 import com.gym.controlapp.repository.StudentRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
 public class StudentService {
 
     private final StudentRepository studentRepository;
-    private final StudentMapper studentMapper;
-
-    @Autowired
-    public StudentService(StudentRepository studentRepository, StudentMapper studentMapper) {
-        this.studentRepository = studentRepository;
-        this.studentMapper = studentMapper;
-    }
 
     public List<Student> listAll() {
         return studentRepository.findAll();
@@ -32,12 +25,22 @@ public class StudentService {
     }
 
     public Student save(StudentPostDto studentPostDto) {
-        return studentRepository.save(StudentMapper.INSTANCE.toStudent(studentPostDto));
+        Student student = Student.builder()
+                .nome(studentPostDto.nome())
+                .nascimento(studentPostDto.nascimento())
+                .cpf(studentPostDto.cpf())
+                .build();
+        return studentRepository.save(student);
     }
 
-    public Student update(StudentPutDto studentPutDto){
-        Student savedStudent = listByIdOrThrowNotFoundException(studentPutDto.id());
-        Student student =  studentMapper.toStudent(studentPutDto);
+    public Student update(StudentPutDto studentPutDto) {
+        var savedStudent = listByIdOrThrowNotFoundException(studentPutDto.id());
+        var student = Student.builder()
+                .id(savedStudent.getId())
+                .nome(studentPutDto.nome() != null ? studentPutDto.nome() : savedStudent.getNome())
+                .nascimento(studentPutDto.nascimento() != null ? studentPutDto.nascimento() : savedStudent.getNascimento())
+                .cpf(studentPutDto.cpf() != null ? studentPutDto.cpf() : savedStudent.getCpf())
+                .build();
         return studentRepository.save(student);
     }
 
