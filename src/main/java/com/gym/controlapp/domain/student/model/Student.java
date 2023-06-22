@@ -1,6 +1,7 @@
-package com.gym.controlapp.model;
+package com.gym.controlapp.domain.student.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.gym.controlapp.domain.address.model.Address;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

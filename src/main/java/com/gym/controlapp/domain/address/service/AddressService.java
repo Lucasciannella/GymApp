@@ -1,10 +1,11 @@
-package com.gym.controlapp.service;
+package com.gym.controlapp.domain.address.service;
 
-import com.gym.controlapp.dto.address.AddressPostDto;
-import com.gym.controlapp.dto.address.AddressPutDto;
-import com.gym.controlapp.exception.NotFoundException;
-import com.gym.controlapp.model.Address;
-import com.gym.controlapp.repository.AddressRepository;
+import com.gym.controlapp.domain.address.dto.AddressPostDto;
+import com.gym.controlapp.domain.address.dto.AddressPutDto;
+import com.gym.controlapp.config.exception.NotFoundException;
+import com.gym.controlapp.domain.address.model.Address;
+import com.gym.controlapp.domain.address.repository.AddressRepository;
+import com.gym.controlapp.domain.student.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

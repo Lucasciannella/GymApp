@@ -1,4 +1,4 @@
-package com.gym.controlapp.exception;
+package com.gym.controlapp.config.exception;
 
 import lombok.Data;
 import lombok.experimental.SuperBuilder;

@@ -1,4 +1,4 @@
-package com.gym.controlapp.dto.student;
+package com.gym.controlapp.domain.student.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 

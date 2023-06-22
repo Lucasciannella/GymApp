@@ -1,12 +1,11 @@
-package com.gym.controlapp.controller;
+package com.gym.controlapp.domain.student.controller;
 
 
-import com.gym.controlapp.dto.student.StudentPostDto;
-import com.gym.controlapp.dto.student.StudentPutDto;
-import com.gym.controlapp.model.Student;
-import com.gym.controlapp.service.StudentService;
+import com.gym.controlapp.domain.student.dto.StudentPostDto;
+import com.gym.controlapp.domain.student.dto.StudentPutDto;
+import com.gym.controlapp.domain.student.model.Student;
+import com.gym.controlapp.domain.student.service.StudentService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

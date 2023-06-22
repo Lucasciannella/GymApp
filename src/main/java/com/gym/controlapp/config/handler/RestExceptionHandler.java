@@ -1,9 +1,9 @@
-package com.gym.controlapp.handler;
+package com.gym.controlapp.config.handler;
 
-import com.gym.controlapp.exception.NotFoundException;
-import com.gym.controlapp.exception.NotFoundExceptionBuilder;
-import com.gym.controlapp.exception.SqlExceptionDetails;
-import com.gym.controlapp.exception.ValidationExceptionDetails;
+import com.gym.controlapp.config.exception.NotFoundException;
+import com.gym.controlapp.config.exception.NotFoundExceptionBuilder;
+import com.gym.controlapp.config.exception.SqlExceptionDetails;
+import com.gym.controlapp.config.exception.ValidationExceptionDetails;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;

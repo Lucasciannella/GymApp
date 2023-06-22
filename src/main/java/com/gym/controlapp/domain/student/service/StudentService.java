@@ -1,10 +1,10 @@
-package com.gym.controlapp.service;
+package com.gym.controlapp.domain.student.service;
 
-import com.gym.controlapp.dto.student.StudentPostDto;
-import com.gym.controlapp.dto.student.StudentPutDto;
-import com.gym.controlapp.exception.NotFoundException;
-import com.gym.controlapp.model.Student;
-import com.gym.controlapp.repository.StudentRepository;
+import com.gym.controlapp.domain.student.dto.StudentPostDto;
+import com.gym.controlapp.domain.student.dto.StudentPutDto;
+import com.gym.controlapp.config.exception.NotFoundException;
+import com.gym.controlapp.domain.student.model.Student;
+import com.gym.controlapp.domain.student.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

@@ -1,4 +1,4 @@
-package com.gym.controlapp.exception;
+package com.gym.controlapp.config.exception;
 
 public class NotFoundException extends RuntimeException {
     public NotFoundException(String message) {

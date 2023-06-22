@@ -1,6 +1,4 @@
-package com.gym.controlapp.dto.address;
-
-import com.gym.controlapp.model.Student;
+package com.gym.controlapp.domain.address.dto;
 
 public record AddressPostDto(String cep,
                              String logradouro,

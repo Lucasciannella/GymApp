@@ -1,11 +1,10 @@
-package com.gym.controlapp.controller;
+package com.gym.controlapp.domain.address.controller;
 
-import com.gym.controlapp.dto.address.AddressPostDto;
-import com.gym.controlapp.dto.address.AddressPutDto;
-import com.gym.controlapp.model.Address;
-import com.gym.controlapp.service.AddressService;
+import com.gym.controlapp.domain.address.dto.AddressPostDto;
+import com.gym.controlapp.domain.address.dto.AddressPutDto;
+import com.gym.controlapp.domain.address.model.Address;
+import com.gym.controlapp.domain.address.service.AddressService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 

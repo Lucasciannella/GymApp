@@ -1,4 +1,4 @@
-package com.gym.controlapp.dto.address;
+package com.gym.controlapp.domain.address.dto;
 
 public record AddressPutDto(Long id,
                             String cep,

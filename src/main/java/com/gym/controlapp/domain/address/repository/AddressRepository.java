@@ -1,6 +1,6 @@
-package com.gym.controlapp.repository;
+package com.gym.controlapp.domain.address.repository;
 
-import com.gym.controlapp.model.Address;
+import com.gym.controlapp.domain.address.model.Address;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AddressRepository extends JpaRepository<Address, Long> {
