@@ -1,8 +1,8 @@
 package com.gym.controlapp.domain.student.service;
 
+import com.gym.controlapp.config.exception.NotFoundException;
 import com.gym.controlapp.domain.student.dto.StudentPostDto;
 import com.gym.controlapp.domain.student.dto.StudentPutDto;
-import com.gym.controlapp.config.exception.NotFoundException;
 import com.gym.controlapp.domain.student.model.Student;
 import com.gym.controlapp.domain.student.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +29,7 @@ public class StudentService {
                 .nome(studentPostDto.nome())
                 .nascimento(studentPostDto.nascimento())
                 .cpf(studentPostDto.cpf())
+                .telefone(studentPostDto.telefone())
                 .build();
         return studentRepository.save(student);
     }
@@ -40,6 +41,7 @@ public class StudentService {
                 .nome(studentPutDto.nome() != null ? studentPutDto.nome() : savedStudent.getNome())
                 .nascimento(studentPutDto.nascimento() != null ? studentPutDto.nascimento() : savedStudent.getNascimento())
                 .cpf(studentPutDto.cpf() != null ? studentPutDto.cpf() : savedStudent.getCpf())
+                .telefone(studentPutDto.telefone() != null ? studentPutDto.telefone(): savedStudent.getTelefone())
                 .build();
         return studentRepository.save(student);
     }

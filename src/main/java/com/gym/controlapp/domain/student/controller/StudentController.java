@@ -5,6 +5,7 @@ import com.gym.controlapp.domain.student.dto.StudentPostDto;
 import com.gym.controlapp.domain.student.dto.StudentPutDto;
 import com.gym.controlapp.domain.student.model.Student;
 import com.gym.controlapp.domain.student.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,13 +33,13 @@ public class StudentController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Student save(@RequestBody StudentPostDto studentPostDto) {
+    public Student save(@Valid @RequestBody StudentPostDto studentPostDto) {
         return studentService.save(studentPostDto);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public Student update(@RequestBody StudentPutDto studentPutDto) {
+    public Student update(@Valid @RequestBody StudentPutDto studentPutDto) {
         return studentService.update(studentPutDto);
     }
 
