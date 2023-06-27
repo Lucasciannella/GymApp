@@ -1,10 +1,25 @@
 package com.gym.controlapp.domain.address.dto;
 
-public record AddressPostDto(String cep,
-                             String logradouro,
-                             String complemento,
-                             String bairro,
-                             String localidade,
-                             String uf,
-                             Long student_id) {
+import jakarta.validation.constraints.NotBlank;
+
+public record AddressPostDto(
+        @NotBlank
+        String cep,
+
+        @NotBlank
+        String logradouro,
+
+        String complemento,
+
+        @NotBlank
+        String bairro,
+
+        @NotBlank
+        String localidade,
+
+        @NotBlank
+        String uf,
+
+        @NotBlank
+        Long student_id) {
 }

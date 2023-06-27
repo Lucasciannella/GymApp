@@ -4,6 +4,7 @@ import com.gym.controlapp.domain.address.dto.AddressPostDto;
 import com.gym.controlapp.domain.address.dto.AddressPutDto;
 import com.gym.controlapp.domain.address.model.Address;
 import com.gym.controlapp.domain.address.service.AddressService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -31,13 +32,13 @@ public class AddressController {
 
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Address save(@RequestBody AddressPostDto addressPostDto) {
+    public Address save(@Valid @RequestBody AddressPostDto addressPostDto) {
         return addressService.save(addressPostDto);
     }
 
     @PutMapping
     @ResponseStatus(HttpStatus.OK)
-    public Address update(@RequestBody AddressPutDto addressPutDto) {
+    public Address update(@Valid @RequestBody AddressPutDto addressPutDto) {
         return addressService.update(addressPutDto);
     }
 

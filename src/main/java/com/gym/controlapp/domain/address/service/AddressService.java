@@ -6,6 +6,7 @@ import com.gym.controlapp.config.exception.NotFoundException;
 import com.gym.controlapp.domain.address.model.Address;
 import com.gym.controlapp.domain.address.repository.AddressRepository;
 import com.gym.controlapp.domain.student.service.StudentService;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -26,6 +27,7 @@ public class AddressService {
         return addressRepository.findById(id).orElseThrow(() -> new NotFoundException("Este endereço não existe"));
     }
 
+    @Transactional
     public Address save(AddressPostDto addressPostDto) {
        var student = studentService.listByIdOrThrowNotFoundException(addressPostDto.student_id());
         Address address = Address.builder()
@@ -40,6 +42,7 @@ public class AddressService {
         return addressRepository.save(address);
     }
 
+    @Transactional
     public Address update(AddressPutDto addressPutDto) {
         var student = studentService.listByIdOrThrowNotFoundException(addressPutDto.student_id());
         var savedAddress = this.findByIdOrThrowNotFoundException(addressPutDto.id());
