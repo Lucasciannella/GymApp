@@ -15,6 +15,7 @@ import java.util.List;
 public class StudentService {
 
     private final StudentRepository studentRepository;
+    private final IStudentPostTransformer studentTransformer;
 
     public List<Student> listAll() {
         return studentRepository.findAll();
@@ -25,13 +26,7 @@ public class StudentService {
     }
 
     public Student save(StudentPostDto studentPostDto) {
-        Student student = Student.builder()
-                .nome(studentPostDto.nome())
-                .nascimento(studentPostDto.nascimento())
-                .cpf(studentPostDto.cpf())
-                .telefone(studentPostDto.telefone())
-                .build();
-        return studentRepository.save(student);
+        return studentRepository.save(studentTransformer.transform(studentPostDto));
     }
 
     public Student update(StudentPutDto studentPutDto) {
@@ -41,7 +36,7 @@ public class StudentService {
                 .nome(studentPutDto.nome() != null ? studentPutDto.nome() : savedStudent.getNome())
                 .nascimento(studentPutDto.nascimento() != null ? studentPutDto.nascimento() : savedStudent.getNascimento())
                 .cpf(studentPutDto.cpf() != null ? studentPutDto.cpf() : savedStudent.getCpf())
-                .telefone(studentPutDto.telefone() != null ? studentPutDto.telefone(): savedStudent.getTelefone())
+                .telefone(studentPutDto.telefone() != null ? studentPutDto.telefone() : savedStudent.getTelefone())
                 .build();
         return studentRepository.save(student);
     }

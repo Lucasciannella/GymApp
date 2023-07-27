@@ -1,4 +1,4 @@
-package com.gym.controlapp;
+package com.gym.controlapp.domain.student.utils;
 
 import com.gym.controlapp.domain.student.dto.StudentPutDto;
 

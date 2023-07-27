@@ -1,23 +1,27 @@
-package com.gym.controlapp;
+package com.gym.controlapp.domain.student;
 
 import com.gym.controlapp.config.exception.NotFoundException;
+import com.gym.controlapp.domain.student.dto.StudentPostDto;
 import com.gym.controlapp.domain.student.model.Student;
 import com.gym.controlapp.domain.student.repository.StudentRepository;
+import com.gym.controlapp.domain.student.service.IStudentPostTransformer;
 import com.gym.controlapp.domain.student.service.StudentService;
+import com.gym.controlapp.domain.student.utils.StudentCreator;
+import com.gym.controlapp.domain.student.utils.StudentPostRequestBodyCreator;
+import com.gym.controlapp.domain.student.utils.StudentPutReQuestBodyCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentMatchers;
-import org.mockito.BDDMockito;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.*;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.List;
 
 @ExtendWith(SpringExtension.class)
 public class StudentServiceTest {
+    StudentPostDto studentPostDto;
+    Student student;
 
     @InjectMocks
     StudentService studentService;
@@ -25,17 +29,17 @@ public class StudentServiceTest {
     @Mock
     StudentRepository studentRepository;
 
+    @Mock
+    IStudentPostTransformer studentTransformer;
+
+
     @BeforeEach
     void setUp() {
-        BDDMockito.when(studentRepository.save(ArgumentMatchers.any(Student.class))).thenReturn(StudentCreator.createValidStudent());
-        BDDMockito.when(studentRepository.findAll()).thenReturn(List.of(StudentCreator.createValidStudent()));
-    }
-
-    @Test
-    void save_Student_whenSuccessful() {
-        Student student = studentService.save(StudentPostRequestBodyCreator.createStudentPostDto());
-
-        Assertions.assertNotNull(student);
+        studentPostDto = StudentPostRequestBodyCreator.createStudentPostDto();
+        student = StudentCreator.createValidStudent();
+        BDDMockito.when(studentRepository.save(ArgumentMatchers.any(Student.class))).thenReturn(student);
+        BDDMockito.when(studentRepository.findAll()).thenReturn(List.of(student));
+        Mockito.when(studentTransformer.transform(studentPostDto)).thenReturn(student);
     }
 
     @Test
@@ -54,5 +58,12 @@ public class StudentServiceTest {
         var exception = Assertions.assertThrows(NotFoundException.class, () -> studentService.update(StudentPutReQuestBodyCreator.createStudentPutDto()));
 
         Assertions.assertEquals(mensagemDeErro, exception.getMessage());
+    }
+
+    @Test
+    void ivoke_method_transform_from_student_transformer_to_tranform_student_dto_object_in_student() {
+        studentService.save(studentPostDto);
+
+        Mockito.verify(studentTransformer, Mockito.times(1)).transform(studentPostDto);
     }
 }
