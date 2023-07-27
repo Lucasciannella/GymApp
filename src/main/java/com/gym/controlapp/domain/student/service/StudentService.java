@@ -5,6 +5,8 @@ import com.gym.controlapp.domain.student.dto.StudentPostDto;
 import com.gym.controlapp.domain.student.dto.StudentPutDto;
 import com.gym.controlapp.domain.student.model.Student;
 import com.gym.controlapp.domain.student.repository.StudentRepository;
+import com.gym.controlapp.domain.student.transformer.IStudentPostTransformer;
+import com.gym.controlapp.domain.student.transformer.IStudentPutTransformer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +18,7 @@ public class StudentService {
 
     private final StudentRepository studentRepository;
     private final IStudentPostTransformer studentTransformer;
+    private final IStudentPutTransformer studentPutTransformer;
 
     public List<Student> listAll() {
         return studentRepository.findAll();
@@ -31,14 +34,7 @@ public class StudentService {
 
     public Student update(StudentPutDto studentPutDto) {
         var savedStudent = listByIdOrThrowNotFoundException(studentPutDto.id());
-        var student = Student.builder()
-                .id(savedStudent.getId())
-                .nome(studentPutDto.nome() != null ? studentPutDto.nome() : savedStudent.getNome())
-                .nascimento(studentPutDto.nascimento() != null ? studentPutDto.nascimento() : savedStudent.getNascimento())
-                .cpf(studentPutDto.cpf() != null ? studentPutDto.cpf() : savedStudent.getCpf())
-                .telefone(studentPutDto.telefone() != null ? studentPutDto.telefone() : savedStudent.getTelefone())
-                .build();
-        return studentRepository.save(student);
+        return studentRepository.save(studentPutTransformer.transform(savedStudent, studentPutDto));
     }
 
     public void delete(Long id) {

@@ -1,10 +1,9 @@
-package com.gym.controlapp.domain.student;
+package com.gym.controlapp.domain.student.transformer;
 
 import com.gym.controlapp.config.exception.NotFoundException;
 import com.gym.controlapp.domain.student.dto.StudentPostDto;
 import com.gym.controlapp.domain.student.model.Student;
 import com.gym.controlapp.domain.student.repository.StudentRepository;
-import com.gym.controlapp.domain.student.service.IStudentPostTransformer;
 import com.gym.controlapp.domain.student.service.StudentService;
 import com.gym.controlapp.domain.student.utils.StudentCreator;
 import com.gym.controlapp.domain.student.utils.StudentPostRequestBodyCreator;
@@ -30,8 +29,7 @@ public class StudentServiceTest {
     StudentRepository studentRepository;
 
     @Mock
-    IStudentPostTransformer studentTransformer;
-
+    IStudentPostTransformer studentPostTrasnformer;
 
     @BeforeEach
     void setUp() {
@@ -39,7 +37,7 @@ public class StudentServiceTest {
         student = StudentCreator.createValidStudent();
         BDDMockito.when(studentRepository.save(ArgumentMatchers.any(Student.class))).thenReturn(student);
         BDDMockito.when(studentRepository.findAll()).thenReturn(List.of(student));
-        Mockito.when(studentTransformer.transform(studentPostDto)).thenReturn(student);
+        Mockito.when(studentPostTrasnformer.transform(studentPostDto)).thenReturn(student);
     }
 
     @Test
@@ -64,6 +62,6 @@ public class StudentServiceTest {
     void ivoke_method_transform_from_student_transformer_to_tranform_student_dto_object_in_student() {
         studentService.save(studentPostDto);
 
-        Mockito.verify(studentTransformer, Mockito.times(1)).transform(studentPostDto);
+        Mockito.verify(studentPostTrasnformer, Mockito.times(1)).transform(studentPostDto);
     }
 }

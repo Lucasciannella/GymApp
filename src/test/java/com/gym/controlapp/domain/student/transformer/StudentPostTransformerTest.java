@@ -1,15 +1,14 @@
-package com.gym.controlapp.domain.student;
+package com.gym.controlapp.domain.student.transformer;
 
 import com.gym.controlapp.domain.student.dto.StudentPostDto;
 import com.gym.controlapp.domain.student.model.Student;
-import com.gym.controlapp.domain.student.service.StudentPostTransformer;
 import com.gym.controlapp.domain.student.utils.StudentCreator;
 import com.gym.controlapp.domain.student.utils.StudentPostRequestBodyCreator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-public class StudentTransformerTest {
+public class StudentPostTransformerTest {
     StudentPostTransformer studentTransformer;
     private StudentPostDto studentPostDto;
     private Student expectedStudent;
