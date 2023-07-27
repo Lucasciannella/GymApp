@@ -1,6 +1,7 @@
 package com.gym.controlapp.domain.address.dto;
 
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 public record AddressPostDto(
         @NotBlank
@@ -20,6 +21,6 @@ public record AddressPostDto(
         @NotBlank
         String uf,
 
-        @NotBlank
+        @NotNull
         Long student_id) {
 }
